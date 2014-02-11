@@ -1,8 +1,8 @@
 {
-    "name": "christianklisch/CKDB",
+    "name": "christianklisch/ckdb",
     "description": "A flat file key-object database",
     "keywords": ["php","flat","file","database","flatfile"],
-    "homepage": "https://github.com/christianklisch/CKDB",
+    "homepage": "https://github.com/christianklisch/ckdb",
     "authors": [{
             "name": "Christian Klisch",
             "homepage": "http://www.christian-klisch.de/"
