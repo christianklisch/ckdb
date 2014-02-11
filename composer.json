@@ -10,7 +10,7 @@
     ],
     "license": "Apache 2.0",
     "autoload": {
-        "files": ["PHPCache.php"]
+        "files": ["CKDB.php"]
     },
     "require": {
         "php": ">=5.3.0"
