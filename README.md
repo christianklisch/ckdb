@@ -67,7 +67,7 @@ $primkeys = array(
 $em->setPrimaryKeys($primkeys);
 ```
 
-Define foreign keys which you want to use in selection and order functions. Each array value is one field in entitiy 'User'
+Define foreign keys which you want to use in selection and order functions. Each array value is one field in entitiy 'User':
 ```php
 $forkeys = array(
     'User' => array('id', 'firstname', 'email')
@@ -77,7 +77,7 @@ $em->setForeignKeys($forkeys);
 
 Define referenced classes for properties. Instead of object primary key will be saved in database index.
 If you don't define referenced classes, subclasses will not be saved as own database record and are not searchable by own repository.
-In this example the field 'homeaddress' referenced to entities of class 'Address'
+In this example the field 'homeaddress' referenced to entities of class 'Address':
 ```php
 $refclasses = array(
     'User' => array('homeaddress' => 'Address')
@@ -115,7 +115,7 @@ To rebuild the whole index per entity class use the reIndex()-function;
 $em->reIndex('User');                                                  
 ```
 
-Method should be called after much changes on index properties or object deletions. Don't call it on time critical prcess.
+Method should be called after much changes on index properties or object deletions. Don't call it on time critical processes.
 
 ### Search
 
