@@ -155,6 +155,7 @@ Select all users older than 50 years and sort by age descending.
 * Documentation
 * Add exceptions
 * Add search-method like()
+* Add search-method in()
 * Add joining referenced entities
 
 ## Contributors
