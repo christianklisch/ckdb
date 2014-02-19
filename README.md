@@ -149,7 +149,7 @@ Search in object list with in() and match entries in other array list (i.E. all 
 ```php
 
 $fathers = $userRepository->find()->equals(array('firstname' => 'Mo', 'lastname' => 'Miller'))->getResult();    
-$userRepository->find()->in('father', fathers)->getResult();                                             
+$userRepository->find()->in('father', $fathers)->getResult();                                             
 ```
 
 ### Sort
