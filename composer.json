@@ -1,7 +1,7 @@
 {
     "name": "christianklisch/ckdb",
-    "description": "A flat file key-object database",
-    "keywords": ["php","flat","file","database","flatfile"],
+    "description": "A flat file key-object nosql database",
+    "keywords": ["php","flat","file","database","flatfile","nosql"],
     "homepage": "https://github.com/christianklisch/ckdb",
     "authors": [{
             "name": "Christian Klisch",

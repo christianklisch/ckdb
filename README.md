@@ -1,4 +1,4 @@
-# CKDB v. 0.1.0
+# CKDB v. 0.2.0
 
 CKDB is a key-object flat file database for php scripts
 
@@ -129,6 +129,8 @@ CKDB provides following methods to find entities after calling find() of reposit
 * notEquals (matching array with field = > value)
 * lt lte (lower than - matching array with field = > value)
 * gt gte (lower than - matching array with field = > value)
+* in (array key must contain field value)
+* notIn (array key must not contain field value)
 
 Furthermore you can sort the results with the sortBy()-method of repository.
 
@@ -138,6 +140,17 @@ $userRepository->find()->equals(array('firstname' => 'George'))->gt(array('age' 
 ```
 This selection searches in field 'firstname' for 'George' with an 'age' older than 50 years (greater than = gt). The users should be sordet descending. The getResult()-method returns an array of found objects in database.
 
+Search in value list with in() and select all Martins and Georges:
+```php
+$userRepository->find()->in('firstname', array('Martin','George'))->getResult();                                             
+```
+
+Search in object list with in() and match entries in other array list (i.E. all childs of father Mo Miller):
+```php
+
+$fathers = $userRepository->find()->equals(array('firstname' => 'Mo', 'lastname' => 'Miller'))->getResult();    
+$userRepository->find()->in('father', fathers)->getResult();                                             
+```
 
 ### Sort
 
@@ -155,7 +168,6 @@ Select all users older than 50 years and sort by age descending.
 * Documentation
 * Add exceptions
 * Add search-method like()
-* Add search-method in()
 * Add joining referenced entities
 
 ## Contributors

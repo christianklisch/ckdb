@@ -1,13 +1,13 @@
 <?php
 
 /**
- * CKDB - a flat file database
+ * CKDB - a flat file nosql database
  *
  * @author      Christian Klisch <info@christian-klisch.de>
  * @copyright   2014 Christian Klisch
  * @link        https://github.com/christianklisch/CKDB
  * @license     https://github.com/christianklisch/CKDB/LICENSE
- * @version     0.1.0
+ * @version     0.2.0
  * @package     CKDB
  *
  * APACHE LICENSE
@@ -667,7 +667,7 @@ class CKDBRepository
 	 */	
 	public function find()
 	{
-		include_once($this->workdirectory.'/'.$this->indexfile);
+		include($this->workdirectory.'/'.$this->indexfile);
 		return new CKDBFinder($index, $this);
 	}
 
@@ -700,8 +700,8 @@ class CKDBFinder
 	public function equals($selection)
 	{
 		foreach($this->lastresults as $key => $value)
-		if (count(array_intersect( $selection, $value)) == count($selection))
-			$this->resultarray[$key] = $value;
+  		if (count(array_intersect( $selection, $value)) == count($selection))
+  			$this->resultarray[$key] = $value;
 
 		return new CKDBFinder($this->resultarray, $this->repository);
 	}
@@ -782,6 +782,34 @@ class CKDBFinder
 			
 		return new CKDBFinder($this->resultarray, $this->repository);
 	}
+	
+	/**
+	 * Matching all entries listed in $inArray. 
+	 * @param var $field matching field
+	 * @param array $inArray search criteria 
+	 */
+	public function in($field, $inArray)
+	{
+		foreach($this->lastresults as $key => $value)
+  		if (array_key_exists($value[$field], $inArray) || in_array($value[$field], $inArray))
+  			$this->resultarray[$key] = $value;
+			
+		return new CKDBFinder($this->resultarray, $this->repository);
+	}	
+	
+	/**
+	 * Matching all entries not listed in $inArray. 
+	 * @param var $field matching field
+	 * @param array $inArray search criteria 
+	 */
+	public function notIn($field, $inArray)
+	{
+		foreach($this->lastresults as $key => $value)
+  		if (!array_key_exists($value[$field], $inArray) && !in_array($value[$field], $inArray))
+  			$this->resultarray[$key] = $value;
+			
+		return new CKDBFinder($this->resultarray, $this->repository);
+	}		
 
 	/**
 	 * Sort by field ascending or descending
