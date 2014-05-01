@@ -1,4 +1,4 @@
-# CKDB v. 0.2.0
+# CKDB v. 0.2.1
 
 CKDB is a key-object flat file database for php scripts
 
