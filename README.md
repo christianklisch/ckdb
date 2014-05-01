@@ -145,7 +145,7 @@ Search in value list with in() and select all Martins and Georges:
 $userRepository->find()->in('firstname', array('Martin','George'))->getResult();                                             
 ```
 
-Search in object list with in() and match entries in other array list (i.E. all childs of father Mo Miller):
+Search in object list with in() and match entries in other array list (i.E. all childs of fathers named Mo Miller):
 ```php
 
 $fathers = $userRepository->find()->equals(array('firstname' => 'Mo', 'lastname' => 'Miller'))->getResult();    
