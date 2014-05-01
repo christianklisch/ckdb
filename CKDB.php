@@ -7,7 +7,7 @@
  * @copyright   2014 Christian Klisch
  * @link        https://github.com/christianklisch/CKDB
  * @license     https://github.com/christianklisch/CKDB/LICENSE
- * @version     0.2.0
+ * @version     0.2.1
  * @package     CKDB
  *
  * APACHE LICENSE
@@ -558,11 +558,11 @@ class CKDBRepository {
             $id = $this->findPrimaryKey($object);
 
             $savedir = $this->workdirectory;
-            $savefile = $savedir . '/' . $id;
+            $savefile = $savedir . '/' . $id . $this->databaseextension;
             unlink($savefile);
 
             $indexstore = $savedir . '/' . $this->indexfile;
-            $indexline = "unset(\$index['" . $primkey . "']);\n";
+            $indexline = "unset(\$index['" . $id . "']);\n";
             file_put_contents($indexstore, $indexline, FILE_APPEND | LOCK_EX);
         }
     }
@@ -620,7 +620,11 @@ class CKDBRepository {
      * Return Finder for using selection criteria
      */
     public function find() {
-        include($this->workdirectory . '/' . $this->indexfile);
+    		$index = null;
+    		if (file_exists ( $this->workdirectory . '/' . $this->indexfile ))
+        		include($this->workdirectory . '/' . $this->indexfile);
+        else
+        		$index = array();
         return new CKDBFinder($index, $this);
     }
 
